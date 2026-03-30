@@ -326,13 +326,15 @@
 
     /* ── AI CHAT WIDGET ── */
     .chat-btn {
-      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
       width: 60px; height: 60px; border-radius: 50%;
       background: linear-gradient(135deg, var(--blue), var(--blue2));
       border: none; cursor: pointer;
       box-shadow: 0 4px 20px rgba(30,64,175,.45);
       display: flex; align-items: center; justify-content: center;
       font-size: 26px; transition: transform .2s, box-shadow .2s;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     .chat-btn:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(30,64,175,.55); }
     .chat-btn .chat-badge {
@@ -342,7 +344,7 @@
       font-size: 10px; font-weight: 700; color: #fff;
     }
     .chat-panel {
-      position: fixed; bottom: 100px; right: 28px; z-index: 998;
+      position: fixed; bottom: 100px; right: 28px; z-index: 9998;
       width: 340px; max-height: 520px;
       background: var(--white); border: 1px solid var(--border);
       border-radius: 20px; box-shadow: 0 16px 60px rgba(0,0,0,.18);
@@ -449,7 +451,7 @@
       nav { display: none; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
-      .chat-panel { width: calc(100vw - 32px); right: 16px; }
+      .chat-panel { width: calc(100vw - 32px); right: 16px; bottom: 90px; max-height: 70vh; }
       .chat-btn { right: 16px; bottom: 20px; }
       .process-grid { grid-template-columns: 1fr; }
     }
@@ -489,8 +491,8 @@
         </ul>
       </nav>
       <div class="header-actions">
-        <a href="https://t.me/Sergbild" target="_blank" class="header-phone">✈️ Telegram</a>
-        <button class="btn btn-blue" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Замовити</button>
+        <a href="tel:+380681315584" class="header-phone">📞 +380 68 131 55 84</a>
+        <a href="tel:+380681315584" class="btn btn-blue">Зателефонувати</a>
       </div>
     </div>
   </div>
@@ -809,6 +811,13 @@
     <div class="contact-grid">
       <div class="contact-info">
         <div class="ci-item">
+          <div class="ci-icon">📞</div>
+          <div>
+            <div class="ci-label">Телефон</div>
+            <div class="ci-val"><a href="tel:+380681315584">+380 68 131 55 84</a></div>
+          </div>
+        </div>
+        <div class="ci-item">
           <div class="ci-icon">✈️</div>
           <div>
             <div class="ci-label">Telegram</div>
@@ -922,6 +931,7 @@
       <div>
         <div class="footer-col-title">Контакти</div>
         <div class="footer-links">
+          <a href="tel:+380681315584">📞 +380 68 131 55 84</a>
           <a href="https://t.me/Sergbild" target="_blank">✈️ Telegram @Sergbild</a>
           <a href="#">📍 Чернігів та область</a>
           <a href="#">🕐 Пн–Сб 8:00–19:00</a>
