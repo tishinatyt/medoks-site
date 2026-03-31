@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Залишити заявку — МЕДОКС-ПЛЮС</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1e40af;--blue-dark:#1e3a8a;--blue-light:#3b82f6;--accent:#f59e0b;--bg:#f8fafc;--white:#ffffff;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--radius:14px;--shadow:0 4px 24px rgba(30,64,175,.10)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.hero-card{background:var(--white);border-radius:24px;box-shadow:var(--shadow);max-width:520px;width:100%;padding:56px 48px 48px;text-align:center;position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--blue-light),var(--accent))}
+.logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:32px}
+.logo-icon{width:40px;height:40px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.logo-icon svg{width:22px;height:22px;fill:white}
+.logo-text{font-family:'Manrope',sans-serif;font-size:18px;font-weight:800;color:var(--blue);letter-spacing:-.3px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:#eff6ff;color:var(--blue);font-size:12px;font-weight:600;padding:6px 14px;border-radius:100px;margin-bottom:20px;letter-spacing:.3px}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue-light)}
+h1{font-family:'Manrope',sans-serif;font-size:30px;font-weight:800;color:var(--text);line-height:1.2;margin-bottom:12px;letter-spacing:-.5px}
+h1 span{color:var(--blue)}
+.hero-sub{color:var(--muted);font-size:15px;line-height:1.6;margin-bottom:36px}
+.cta-btn{width:100%;background:var(--blue);color:white;border:none;padding:16px 32px;border-radius:var(--radius);font-size:16px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px}
+.cta-btn:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(30,64,175,.25)}
+.cta-btn svg{width:20px;height:20px;fill:white}
+.trust-row{display:flex;justify-content:center;gap:24px;margin-top:28px;padding-top:28px;border-top:1px solid var(--border)}
+.trust-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.trust-num{font-family:'Manrope',sans-serif;font-size:22px;font-weight:800;color:var(--blue)}
+.trust-label{font-size:11px;color:var(--muted);text-align:center;line-height:1.3}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(6px);z-index:1000;align-items:center;justify-content:center;padding:20px;animation:fadeIn .2s ease}
+.modal-overlay.active{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal{background:var(--white);border-radius:24px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;position:relative;animation:slideUp .3s cubic-bezier(.34,1.56,.64,1)}
+.modal-header{padding:32px 32px 0;display:flex;justify-content:space-between;align-items:flex-start}
+.modal-title{font-family:'Manrope',sans-serif;font-size:22px;font-weight:800;color:var(--text);line-height:1.2}
+.modal-sub{font-size:13px;color:var(--muted);margin-top:4px}
+.close-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:18px;flex-shrink:0;transition:all .15s}
+.close-btn:hover{background:#fee2e2;border-color:#fca5a5;color:#ef4444}
+.modal-body{padding:24px 32px 32px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+.field label span{color:#ef4444}
+.field input,.field textarea,.field select{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;font-family:'Inter',sans-serif;color:var(--text);background:var(--white);transition:border-color .15s,box-shadow .15s;outline:none;appearance:none}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--blue-light);box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.field textarea{resize:vertical;min-height:90px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.select-wrap{position:relative}
+.select-wrap::after{content:'▾';position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip input[type="checkbox"]{display:none}
+.chip label{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border:1.5px solid var(--border);border-radius:100px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .15s;user-select:none;margin:0}
+.chip input:checked+label{background:#eff6ff;border-color:var(--blue-light);color:var(--blue);font-weight:600}
+.chip label:hover{border-color:var(--blue-light);color:var(--blue)}
+.submit-btn{width:100%;background:var(--blue);color:white;border:none;padding:15px 24px;border-radius:var(--radius);font-size:15px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;margin-top:8px;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.submit-btn:hover:not(:disabled){background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 8px 24px rgba(30,64,175,.25)}
+.submit-btn:disabled{opacity:.6;cursor:not-allowed}
+.privacy{text-align:center;font-size:11px;color:var(--muted);margin-top:12px;line-height:1.5}
+.success-screen{display:none;padding:48px 32px;text-align:center;flex-direction:column;align-items:center}
+.success-screen.active{display:flex}
+.success-icon{width:72px;height:72px;background:#dcfce7;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px}
+.success-title{font-family:'Manrope',sans-serif;font-size:22px;font-weight:800;margin-bottom:8px}
+.success-sub{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:24px}
+.close-success{background:var(--blue);color:white;border:none;padding:12px 28px;border-radius:var(--radius);font-size:14px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;transition:background .2s}
+.close-success:hover{background:var(--blue-dark)}
+@media(max-width:480px){.hero-card{padding:40px 24px 32px}.modal-header,.modal-body{padding-left:20px;padding-right:20px}.field-row{grid-template-columns:1fr}h1{font-size:24px}.trust-row{gap:16px}}
+</style>
+</head>
+<body>
+<div class="hero-card">
+  <div class="logo">
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22" style="fill:rgba(255,255,255,.4)"/></svg></div>
+    <div class="logo-text">МЕДОКС-ПЛЮС</div>
+  </div>
+  <div class="hero-badge">Будівельні роботи під ключ</div>
+  <h1>Залиште <span>заявку</span> на роботи</h1>
+  <p class="hero-sub">Заповніть коротку форму — менеджер зв'яжеться з вами протягом 30 хвилин і розрахує вартість безкоштовно.</p>
+  <button class="cta-btn" onclick="openModal()">
+    <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    Залишити заявку
+  </button>
+  <div class="trust-row">
+    <div class="trust-item"><span class="trust-num">10+</span><span class="trust-label">років досвіду</span></div>
+    <div class="trust-item"><span class="trust-num">200+</span><span class="trust-label">об'єктів здано</span></div>
+    <div class="trust-item"><span class="trust-num">30 хв</span><span class="trust-label">час відповіді</span></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
+  <div class="modal" id="modal">
+    <div id="formScreen">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">📋 Заявка на роботи</div>
+          <div class="modal-sub">Чернігів та область · Безкоштовний виїзд</div>
+        </div>
+        <button class="close-btn" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="field-row">
+          <div class="field"><label>Ваше ім'я <span>*</span></label><input type="text" id="fName" placeholder="Іван" autocomplete="given-name"></div>
+          <div class="field"><label>Телефон <span>*</span></label><input type="tel" id="fPhone" placeholder="+380" autocomplete="tel"></div>
+        </div>
+        <div class="field">
+          <label>Тип робіт <span>*</span></label>
+          <div class="chips">
+            <div class="chip"><input type="checkbox" id="w1" value="Ремонт квартири"><label for="w1">🏠 Ремонт квартири</label></div>
+            <div class="chip"><input type="checkbox" id="w2" value="Будівництво під ключ"><label for="w2">🏗️ Будівництво під ключ</label></div>
+            <div class="chip"><input type="checkbox" id="w3" value="Оздоблювальні роботи"><label for="w3">🖌️ Оздоблення</label></div>
+            <div class="chip"><input type="checkbox" id="w4" value="Сантехніка"><label for="w4">🔧 Сантехніка</label></div>
+            <div class="chip"><input type="checkbox" id="w5" value="Електрика"><label for="w5">⚡ Електрика</label></div>
+            <div class="chip"><input type="checkbox" id="w6" value="Покрівля / фасад"><label for="w6">🏚️ Покрівля / фасад</label></div>
+            <div class="chip"><input type="checkbox" id="w7" value="Фундамент"><label for="w7">🧱 Фундамент</label></div>
+            <div class="chip"><input type="checkbox" id="w8" value="Інше"><label for="w8">✏️ Інше</label></div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Зручний час для дзвінка</label>
+          <div class="select-wrap">
+            <select id="fTime">
+              <option value="">— будь-коли —</option>
+              <option>Ранок (9:00–12:00)</option>
+              <option>День (12:00–16:00)</option>
+              <option>Вечір (16:00–19:00)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label>Коментар / питання</label><textarea id="fComment" placeholder="Опишіть об'єкт, обсяг робіт або будь-яке питання…"></textarea></div>
+        <button class="submit-btn" id="submitBtn" onclick="submitForm()"><span id="btnText">Надіслати заявку →</span></button>
+        <p class="privacy">🔒 Дані захищені. Не передаємо третім особам.</p>
+      </div>
+    </div>
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">✅</div>
+      <div class="success-title">Заявку отримано!</div>
+      <p class="success-sub">Менеджер зателефонує вам<br>протягом 30 хвилин.<br><br>Дякуємо за довіру до МЕДОКС-ПЛЮС!</p>
+      <button class="close-success" onclick="closeModal()">Закрити</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const BOT_TOKEN='${TG_TOKEN}';
+const CHAT_ID='7911844288';
+function openModal(){document.getElementById('modalOverlay').classList.add('active');document.body.style.overflow='hidden'}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('active');document.body.style.overflow='';setTimeout(()=>{document.getElementById('formScreen').style.display='';document.getElementById('successScreen').classList.remove('active');document.getElementById('submitBtn').disabled=false;document.getElementById('btnText').textContent='Надіслати заявку →'},300)}
+function closeOnOverlay(e){if(e.target===document.getElementById('modalOverlay'))closeModal()}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+async function submitForm(){
+  const name=document.getElementById('fName').value.trim();
+  const phone=document.getElementById('fPhone').value.trim();
+  const comment=document.getElementById('fComment').value.trim();
+  const time=document.getElementById('fTime').value;
+  const works=[...document.querySelectorAll('.chip input:checked')].map(c=>c.value).join(', ')||'—';
+  if(!name){alert("Будь ласка, вкажіть ваше ім'я");return}
+  if(!phone){alert('Будь ласка, вкажіть телефон');return}
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true;
+  document.getElementById('btnText').textContent='Надсилаємо…';
+  const msg=`🏗 <b>НОВА ЗАЯВКА — МЕДОКС-ПЛЮС</b>\n\n👤 <b>Ім'я:</b> ${name}\n📞 <b>Телефон:</b> ${phone}\n🔨 <b>Тип робіт:</b> ${works}\n🕐 <b>Зручний час:</b> ${time||'будь-коли'}\n💬 <b>Коментар:</b> ${comment||'—'}\n\n📅 ${new Date().toLocaleString('uk-UA',{timeZone:'Europe/Kiev'})}`;
+  try{
+    const res=await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({chat_id:CHAT_ID,text:msg,parse_mode:'HTML'})});
+    const data=await res.json();
+    if(data.ok){document.getElementById('formScreen').style.display='none';document.getElementById('successScreen').classList.add('active')}
+    else throw new Error(data.description)
+  }catch(err){alert('Помилка відправки. Зателефонуйте нам: +380 68 131 55 84');btn.disabled=false;document.getElementById('btnText').textContent='Надіслати заявку →'}
+}
+</script>
+</body>
+</html>
