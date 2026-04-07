@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>МЕДОКС-ПЛЮС — Будівельні роботи під ключ | Чернігів</title>
   <meta name="description" content="МЕДОКС-ПЛЮС — будівельні роботи під ключ у Чернігові та Чернігівській області. Безкоштовний виїзд, офіційний договір, гарантія якості." />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#2c5f8a" />
+  <link rel="apple-touch-icon" href="/images/icon-192.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -328,107 +331,6 @@
       justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px;
     }
 
-    /* ── AI CHAT WIDGET ── */
-    .chat-btn {
-      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
-      width: 60px; height: 60px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
-      border: none; cursor: pointer;
-      box-shadow: 0 4px 20px rgba(30,64,175,.45);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 26px; transition: transform .2s, box-shadow .2s;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-    }
-    .chat-btn:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(30,64,175,.55); }
-    .chat-btn .chat-badge {
-      position: absolute; top: -2px; right: -2px; width: 18px; height: 18px;
-      background: var(--orange); border-radius: 50%; border: 2px solid var(--white);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 700; color: #fff;
-    }
-    .chat-panel {
-      position: fixed; bottom: 100px; right: 28px; z-index: 9998;
-      width: 340px; max-height: 520px;
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 20px; box-shadow: 0 16px 60px rgba(0,0,0,.18);
-      display: none; flex-direction: column; overflow: hidden;
-    }
-    .chat-panel.open { display: flex; animation: chat-in .22s ease; }
-    @keyframes chat-in { from { opacity:0; transform: translateY(12px) scale(.97); } to { opacity:1; transform: none; } }
-    .chat-head {
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
-      padding: 16px 18px; display: flex; align-items: center; gap: 11px;
-    }
-    .chat-head-ava {
-      width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.2);
-      display: flex; align-items: center; justify-content: center; font-size: 18px;
-    }
-    .chat-head-name { font-size: 15px; font-weight: 700; color: #fff; }
-    .chat-head-sub  { font-size: 12px; color: rgba(255,255,255,.65); margin-top: 1px; }
-    .chat-close {
-      margin-left: auto; width: 28px; height: 28px; border-radius: 8px;
-      background: rgba(255,255,255,.15); border: none; cursor: pointer;
-      color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center;
-      transition: background .14s;
-    }
-    .chat-close:hover { background: rgba(255,255,255,.28); }
-    .chat-messages {
-      flex: 1; overflow-y: auto; padding: 16px; display: flex;
-      flex-direction: column; gap: 10px; min-height: 200px;
-    }
-    .msg { max-width: 82%; display: flex; flex-direction: column; gap: 3px; }
-    .msg-bot { align-self: flex-start; }
-    .msg-user { align-self: flex-end; }
-    .msg-bubble {
-      padding: 10px 14px; border-radius: 16px; font-size: 14px; line-height: 1.55;
-    }
-    .msg-bot .msg-bubble { background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 4px 16px 16px 16px; }
-    .msg-user .msg-bubble { background: var(--blue); color: #fff; border-radius: 16px 4px 16px 16px; }
-    .msg-time { font-size: 10px; color: var(--muted); }
-    .msg-bot .msg-time { padding-left: 4px; }
-    .msg-user .msg-time { padding-right: 4px; text-align: right; }
-    .typing { display: flex; gap: 4px; align-items: center; padding: 10px 14px; }
-    .typing span {
-      width: 7px; height: 7px; border-radius: 50%; background: var(--muted);
-      animation: dot .9s infinite;
-    }
-    .typing span:nth-child(2) { animation-delay: .15s; }
-    .typing span:nth-child(3) { animation-delay: .3s; }
-    @keyframes dot { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
-    .chat-lead {
-      padding: 14px 16px; border-top: 1px solid var(--border);
-      background: var(--bg); display: none; flex-direction: column; gap: 8px;
-    }
-    .chat-lead.show { display: flex; }
-    .chat-lead-title { font-size: 13px; font-weight: 700; color: var(--text); }
-    .chat-lead-input {
-      width: 100%; padding: 9px 13px; border: 1.5px solid var(--border);
-      border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px;
-      outline: none; transition: border-color .14s;
-    }
-    .chat-lead-input:focus { border-color: var(--blue); }
-    .chat-lead-btn {
-      padding: 9px; background: var(--orange); color: #fff; border: none;
-      border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 13px;
-      font-weight: 700; cursor: pointer; transition: background .14s;
-    }
-    .chat-lead-btn:hover { background: var(--orange2); }
-    .chat-footer { padding: 12px 16px; border-top: 1px solid var(--border); display: flex; gap: 8px; }
-    .chat-input {
-      flex: 1; padding: 10px 14px; border: 1.5px solid var(--border);
-      border-radius: 999px; font-family: 'Inter', sans-serif; font-size: 14px;
-      outline: none; transition: border-color .14s;
-    }
-    .chat-input:focus { border-color: var(--blue); }
-    .chat-send {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--blue); color: #fff; border: none;
-      cursor: pointer; font-size: 17px; display: flex; align-items: center; justify-content: center;
-      transition: background .14s, transform .14s;
-    }
-    .chat-send:hover { background: #1e3a8a; transform: scale(1.07); }
-
     /* ── CTA BANNER ── */
     .cta-banner {
       background: linear-gradient(135deg, var(--orange), #f59e0b);
@@ -455,9 +357,7 @@
       nav { display: none; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
-      .chat-panel { width: calc(100vw - 32px); right: 16px; bottom: 90px; max-height: 70vh; }
-      .chat-btn { right: 16px; bottom: 20px; }
-      .process-grid { grid-template-columns: 1fr; }
+.process-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -956,69 +856,12 @@
   </div>
 </footer>
 
-<!-- AI CHAT WIDGET -->
-<button class="chat-btn" id="chatBtn" onclick="toggleChat()" title="AI Консультант">
-  💬
-  <span class="chat-badge">AI</span>
-</button>
 
-<div class="chat-panel" id="chatPanel">
-  <div class="chat-head">
-    <div class="chat-head-ava">🏗️</div>
-    <div>
-      <div class="chat-head-name">Консультант МЕДОКС-ПЛЮС</div>
-      <div class="chat-head-sub">AI помічник · зазвичай відповідає за секунди</div>
-    </div>
-    <button class="chat-close" onclick="toggleChat()">✕</button>
-  </div>
-  <div class="chat-messages" id="chatMessages"></div>
-  <div class="chat-lead" id="chatLead">
-    <div class="chat-lead-title">📞 Залишити номер для зворотного зв'язку</div>
-    <input class="chat-lead-input" id="chatLeadPhone" placeholder="Телефон або Telegram..." />
-    <button class="chat-lead-btn" onclick="sendChatLead()">Надіслати →</button>
-  </div>
-  <div class="chat-footer">
-    <input class="chat-input" id="chatInput" placeholder="Напишіть питання..." onkeydown="if(event.key==='Enter')sendChat()" />
-    <button class="chat-send" onclick="sendChat()">➤</button>
-  </div>
-</div>
 
 <script>
   // ── CONFIG ──
   const TG_TOKEN   = '8690677969:AAFXq2oJuzluRp7Aozre2Tx9W9J8FGOE9-Q';
   const TG_CHAT_ID = '7911844288';
-  const LEAD_TG_CHAT_ID = '7911844288';
-
-  const _a = 'sk-ant-api03-4a8DepoyL0y0Oe';
-  const _b = 'K7lCvoIpJLgEQLVkbLqw0DDTsNxMI';
-  const _c = 'C5CvMkkXYbrL2KVF07nz08F47cEijy-laSbDIN-Dtzw-hKsxugAA';
-  const CLAUDE_KEY = _a + _b + _c;
-
-  const SYSTEM_PROMPT = `Ти — AI-консультант будівельної компанії МЕДОКС-ПЛЮС (Чернігів).
-Відповідай виключно українською мовою. Будь дружнім, конкретним, коротким.
-
-Компанія МЕДОКС-ПЛЮС займається:
-- Будівництвом будинків та котеджів під ключ
-- Фундаментними роботами (стрічкові, плитні, пальові фундаменти)
-- Реконструкцією та капітальним ремонтом
-- Комерційним будівництвом (склади, офіси, виробничі приміщення)
-- Оздоблювальними роботами (штукатурка, плитка, гіпсокартон)
-- Покрівельними роботами (металочерепиця, профнастил, м'яка покрівля)
-
-Ключові переваги:
-- Офіційний договір, фіксована ціна без доплат
-- Власна бригада, не субпідряд
-- Безкоштовний виїзд на об'єкт та кошторис
-- Гарантія на роботи 2 роки
-- Чернігів та Чернігівська область
-
-Контакти: Telegram @Sergbild
-
-Правила:
-- Відповідай 2-3 реченнями максимум
-- Якщо питають ціну — скажи що точну вартість визначає майстер після виїзду, і запропонуй залишити контакт
-- Якщо клієнт хоче замовити — запропонуй залишити телефон або написати @Sergbild
-- Не вигадуй конкретні ціни`;
 
   // ── LEAD FORM ──
   async function sendToTelegram(text) {
@@ -1145,6 +988,14 @@
     if (!phone) return;
     await sendToTelegram(`💬 <b>Контакт з AI-чату МЕДОКС-ПЛЮС</b>\n\n📞 ${phone}`);
     document.getElementById('chatLead').innerHTML = '<div style="font-size:14px;font-weight:600;color:var(--green);padding:4px 0;">✅ Дякуємо! Ми зателефонуємо вам найближчим часом.</div>';
+  }
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .catch(err => console.warn('SW registration failed:', err));
+    });
   }
 </script>
 </body>
